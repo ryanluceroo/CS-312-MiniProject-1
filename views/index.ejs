@@ -1,24 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Title and link to the CSS file -->
     <title>Blog</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h1>Blog Posts</h1>
-    <a href="/create">Create New Post</a>
-    <% if (posts.length > 0) { %>
-        <% posts.forEach(post => { %>
-            <div class="post">
-                <h2><%= post.title %></h2>
-                <p>By <%= post.author %> on <%= post.date %></p>
-                <p><%= post.content %></p>
-                <a href="/edit/<%= post.id %>">Edit</a>
-                <a href="/delete/<%= post.id %>">Delete</a>
-            </div>
-        <% }) %>
-    <% } else { %>
-        <p>No posts available</p>
-    <% } %>
+    <!-- Container for the entire blog content -->
+    <div class="container">
+        <!-- Main title centered on the page -->
+        <h1>Blog Posts</h1>
+
+        <!-- Centered 'Create New Post' button -->
+        <div class="new-post">
+            <a href="/create">Create New Post</a>
+        </div>
+
+        <!-- Check if there are any posts to display -->
+        <% if (posts.length > 0) { %>
+            <!-- Loop through the posts array and display each post -->
+            <% posts.forEach(post => { %>
+                <!-- Each post has its own styled container -->
+                <div class="post">
+                    <!-- Post title -->
+                    <h2><%= post.title %></h2>
+
+                    <!-- Post content -->
+                    <p><%= post.content %></p>
+
+                    <!-- Author and date of the post -->
+                    <small>By <%= post.author %> on <%= post.date %></small>
+
+                    <!-- Links for editing and deleting the post -->
+                    <a href="/edit/<%= post.id %>">Edit</a>
+                    <a href="/delete/<%= post.id %>">Delete</a>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <!-- Message when there are no posts available -->
+            <p>No posts available! Make a post please!</p>
+        <% } %>
+    </div>
 </body>
 </html>
